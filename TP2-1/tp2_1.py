@@ -3,10 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import chisquare
 
-# =====================================================
-# GENERADORES
-# =====================================================
-
 def cuadrados_medios(seed, n):
     numeros = []
     x = seed
@@ -27,23 +23,11 @@ def gcl(seed, a, c, m, n):
 def python_random(n):
     return [random.random() for _ in range(n)]
 
-# =====================================================
-# TEST DE MEDIA
-# =====================================================
-
 def test_media(datos):
     return np.mean(datos)
 
-# =====================================================
-# TEST DE VARIANZA
-# =====================================================
-
 def test_varianza(datos):
     return np.var(datos)
-
-# =====================================================
-# TEST CHI-CUADRADO
-# =====================================================
 
 def test_chi_cuadrado(datos, intervalos=10):
     frecuencias, _ = np.histogram(datos, bins=intervalos, range=(0, 1))
@@ -53,10 +37,6 @@ def test_chi_cuadrado(datos, intervalos=10):
         f_exp=esperadas
     )
     return chi2, pvalue
-
-# =====================================================
-# TEST DE CORRIDAS
-# =====================================================
 
 def test_corridas(datos):
     media = np.mean(datos)
@@ -72,10 +52,6 @@ def test_corridas(datos):
             corridas += 1
     return corridas
 
-# =====================================================
-# HISTOGRAMA
-# =====================================================
-
 def histograma(datos, titulo):
     plt.figure(figsize=(8, 5))
     plt.hist(datos, bins=10)
@@ -83,10 +59,6 @@ def histograma(datos, titulo):
     plt.xlabel("Valor")
     plt.ylabel("Frecuencia")
     plt.show()
-
-# =====================================================
-# DISPERSION Ui vs Ui+1
-# =====================================================
 
 def dispersion(datos, titulo):
     x = datos[:-1]
@@ -98,17 +70,13 @@ def dispersion(datos, titulo):
     plt.ylabel("Ui+1")
     plt.show()
 
-# =====================================================
-# PROGRAMA PRINCIPAL
-# =====================================================
 N = 10000
-# Cuadrados medios
+
 cm = cuadrados_medios(
     seed=5735,
     n=N
 )
 
-# GCL
 gcl_nums = gcl(
     seed=12345,
     a=1664525,
@@ -117,7 +85,6 @@ gcl_nums = gcl(
     n=N
 )
 
-# Python
 py = python_random(N)
 generadores = {
     "Cuadrados Medios": cm,
